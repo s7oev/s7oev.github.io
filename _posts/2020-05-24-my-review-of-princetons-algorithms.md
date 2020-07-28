@@ -20,7 +20,7 @@ date: 2020-05-24
 
 <p>Honestly, seeing <a href="https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php">the first assignment</a> was daunting. I even contemplated giving up on the course! We were expected to use the union find method presented in the lecture to answer whether a given system percolates:</p>
 
-<img src="/img/2020/05/percolates.png" alt="" width=>
+<img src="/img/2020/05/percolates.png" alt="">
 
 <p>The sites (i.e., the blocks above) are opened randomly; and, after we have had made the algorithm to establish whether the system percolates, we had to estimate the percolation threshold for a given size, e.g. 20x20, using a Monte Carlo simulation! To be honest, it was the latter part that scared me, but in the end it turned out that finding whether a system percolates took me around 5-6 hours, following which writing the simulation actually was done in just 30-40 minutes.</p>
 
