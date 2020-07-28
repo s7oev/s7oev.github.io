@@ -20,7 +20,7 @@ date: 2020-05-24
 
 <p>Honestly, seeing <a href="https://coursera.cs.princeton.edu/algs4/assignments/percolation/specification.php">the first assignment</a> was daunting. I even contemplated giving up on the course! We were expected to use the union find method presented in the lecture to answer whether a given system percolates:</p>
 
-<img src="/img/2020/05/percolates.png" alt="">
+<img src="/img/2020/05/percolates.png" alt="Percolates or does not percolate?">
 
 <p>The sites (i.e., the blocks above) are opened randomly; and, after we have had made the algorithm to establish whether the system percolates, we had to estimate the percolation threshold for a given size, e.g. 20x20, using a Monte Carlo simulation! To be honest, it was the latter part that scared me, but in the end it turned out that finding whether a system percolates took me around 5-6 hours, following which writing the simulation actually was done in just 30-40 minutes.</p>
 
@@ -65,19 +65,19 @@ date: 2020-05-24
 
 <p>Actually, this algorithm is quite new – discovered only in 2007! The way we were supposed to apply it was by treating the image as a digraph of pixels (each connected to the bottom ones), and making a topological sort of the pixels. The weights of the digraph edges are the “energy” of the pixels, as described in the video. I actually couldn’t wrap my head around how to apply the topological sort in this scenario, but I figured something else: since we want the shortest path to the bottom, if we look at the picture in a reverse order: i.e., starting from the bottom pixels, we can take advantage of something very important. Let's illustrate it with an example: by specification, the bottom pixels all have an energy of 1000 (as well as all other border pixels):</p>
 
-<img src="https://s7oev.com/blog/wp-content/uploads/2020/05/image-1.png" alt="" class="wp-image-52"/>
+<img src="/img/2020/05/sc-1.png" alt="Pixels on the bottom row">
 
 <p>And, let’s assume that the pixels from the row above the bottom have the following (made-up) values:</p>
 
-<img src="https://s7oev.com/blog/wp-content/uploads/2020/05/image-2.png" alt="" class="wp-image-53"/>
+<img src="/img/2020/05/sc-2.png" alt="Pixels on the row above the bottom row">
 
 <p>Meaning that as of now, we have the following last 2 rows:</p>
 
-<img src="https://s7oev.com/blog/wp-content/uploads/2020/05/image-3.png" alt="" class="wp-image-54"/>
+<img src="/img/2020/05/sc-3.png" alt="Pixels on the last 2 rows">
 
 <p>Here’s the image with an extra row with no energies added (as we don’t need them to see what I’m saying). We are focusing on the highlighted in red pixel:</p>
 
-<img src="https://s7oev.com/blog/wp-content/uploads/2020/05/image-4.png" alt="" class="wp-image-55"/>
+<img src="/img/2020/05/sc-4.png" alt="Pixels on the last 3 rows">
 
 <p>The blue arrows are the edges in our (implicit) graph. So, without needing to know anything extra, we can immediately see what would be the shortest path from this pixel to the bottom: take the left pixel and then any of its adjacent ones (doesn’t matter which one exactly because all 3 of its adjacent are at the bottom and thus have an energy of 1000). So, by generalizing this idea and scanning the image from the bottom, and saving the “shortest distance to bottom” for each pixel (e.g., the shortest distance to bottom for our red pixel above is 600 + 1000 = 1600), by the time I finish scanning the pixels, I already know the shortest path to the bottom! To be fair, <a href="https://coursera.cs.princeton.edu/algs4/assignments/seam/faq.php">the assignment FAQ</a> states the following:</p>
 
@@ -107,7 +107,7 @@ date: 2020-05-24
 
 <p>Actually, on this last assignment, I got my highest score on first submit – a whooping 97 points!! In fact, just a few minutes later, I got a 99 – I had lost 2 points, because I failed to consider a corner case – words that are nontrivial circular suffixes of themselves, e.g. ************. So, this was a quick bugfix. Then, another hour and a half tuning the performance, and… 100 points!!! I wanted to get those, so that I can have the second part finished with all assignments with 100%, and I did it:</p>
 
-<img src="https://s7oev.com/blog/wp-content/uploads/2020/05/image-5.png" alt="" class="wp-image-61"/>
+<img src="/img/2020/05/100-percent.png" alt="100% for all assignments of Part II">
 
 <h2>Closing notes</h2>
 
