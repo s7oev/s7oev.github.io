@@ -10,7 +10,7 @@ For example, if we define a Car class with the attributes producer, model and ye
 
 Today, I was wondering how we can achieve this in ABAP; unfortunately, it turns out, SAP does not provide a default way to do this. However, a coworker managed to find the if_xlf_comparable interface that requires you to implement an equals() method. While this specific interface is supposed to be used only with XLF-related objects, as evident by the name, its signature seemed general enough, so I used it as a basis, and for the actual implementation, I followed the Java way.
 
-<h1>Defining a class to implement equals()</h1>
+<h2>Defining a class to implement equals()</h2>
 To continue with the example described above, I defined the Car class below, with its relevant attributes:
 
 ```
@@ -37,7 +37,7 @@ METHODS:
          RETURNING VALUE(is_equal) TYPE abap_bool.
 ```
 
-<h1>Writing the equals() method</h1>
+<h2>Writing the equals() method</h2>
 Then, obviously, the most important task remained: writing the equals() method. The traditional way to implement equals() in Java is as follows:
 
 1. Check if the other object reference is actually a reference to the same object; if so, return true
@@ -45,7 +45,7 @@ Then, obviously, the most important task remained: writing the equals() method. 
 3. Check if the other object’s class is the same as the caller object’s class; if not so, return false
 4. Downcast the other object to the relevant class and compare the relevant attributes; if all relevant attributes are equal, return true
 
-An excellent example for this is Pricenton’s implementation in their class representing a point in a 2-dimensional space – Point2D (source):
+An excellent example for this is Pricenton’s implementation in their class representing a point in a 2-dimensional space – Point2D (<a href="https://algs4.cs.princeton.edu/13stacks/Point2D.java.html">source</a>):
 
 ```
 public boolean equals(Object other) {
@@ -80,7 +80,7 @@ METHOD equals.
 ENDMETHOD.
 ```
 
-<h1>Simple demo</h1>
+<h2>Simple demo</h2>
 To test this, I created a few objects of the class, as well as one from a Truck class (refer to the full code at the end for its definition), and used the equals method in all possible cases:
 
 ```
@@ -123,10 +123,10 @@ Car 1 is the same as itself:    X
 Car 1 and Truck 1 are the same: 
 ```
 
-<h1>Closing notes</h1>
+<h2>Closing notes</h2>
 To conclude, this article demonstrates how to implement an equals() method in ABAP the same way that you would do it in Java. To stick with something SAP-provided, I used the signature of the equals() method in the if_xlf_comparable interface. The equals() method described here is not related to this specific interface – it can also be used with an interface you have written, or without any interface!
 
-<h1>Full Code</h1>
+<h2>Full Code</h2>
 ```
 *&---------------------------------------------------------------------*
 *& Report  zss_demo_comparable
