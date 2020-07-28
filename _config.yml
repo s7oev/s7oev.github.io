@@ -1,2 +1,3 @@
 name: Stoyko Stoev's Pages
 markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
