@@ -1,14 +1,16 @@
 ---
 layout: post
 title: "'It is an amazing time to be studying Computer Science - it's kinda like studying Maths in Ancient Greece'"
-date: 2020-05-24
+date: 2020-05-27
 ---
-
+
+
 <p>The post title is a quote by Chris Piech - a Stanford professor. It was something said by him in an introductory Zoom meeting for the section leaders of Stanford's CS106A - Code in Place online course. I was very lucky to be one of those:</p>
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6653334788939796480" allowfullscreen="" title="Embedded post" width="504" height="426" frameborder="0"></iframe>
 
-<p>So, what Chris meant was that, for example, Pythagoras created something that serves as a basis to build upon centuries later and students are still learning it today. This is the current state of Computer Science - people will be learning about the magnificent discoveries of today for a long time to come!</p>
+<p>So, what Chris meant was that, for example, Pythagoras created something that serves as a basis to build upon centuries later and students are still learning it today. This is the current state of Computer Science - people will be learning about the magnificent discoveries of today for a long time to come!</p>
+
 <p>Following the end of the course, the other professor behind it - Ali Malik - shared a roadmap for where to go on from here. It is the result of a shared effort of the people behind the course and guides students on how to proceed after the start in their Computer Science journey. I've been reposting it left and right (with permission) as I think it is an amazing resource!</p>
 
 <p>I'm not sure if this blog will ever become popular - for now, I'm just using it as a <em>public diary</em> - I'm writing mainly for myself, and if anyone happens to stumble upon this, well, that's cool! And so I figured - I might as well share it here too. I know I definitely plan to use some of the resources mentioned.</p>
@@ -21,10 +23,12 @@ date: 2020-05-24
 
 <p>We have split up this resource into umbrella topics that students have been asking about. In reality, there are a lot more ways to apply Computer Science, such as music, healthcare, social good and education.</p>
 
-<p>Each area has a list of <strong>core topics</strong> you need to understand to engage with meaningfully with that discipline. After you develop a solid understanding of these core topics, you can pick and choose whatever subareas you find interesting and focus there.</p>
+<p>Each area has a list of <strong>core topics</strong> you need to understand to engage with meaningfully with that discipline. After you develop a solid understanding of these core topics, you can pick and choose whatever subareas you find interesting and focus there.</p>
+
 <p>If there is any topic not covered here that you are interested in, ask about it in the comments! We will try to answer those as well.</p>
 
-<h3><strong>How to use this resource</strong>:</h3>
+<h3><strong>How to use this resource</strong>:</h3>
+
 <p>Since we can’t cover the vast range of possible material in the world, most of the resources linked below are websites of university courses that cover the relevant concept. <strong><em>This doesn’t mean you have to take the academic course to learn that material</em></strong>. Instead, the course syllabus can serve as a reference point for which topics are important to cover. You can then go about actually learning these topics however you want. Some potential ways to learn could be to search for the topic on google or youtube, read textbooks, or browse reddit.</p>
 
 <h2>Foundations of CS</h2>
@@ -35,8 +39,10 @@ date: 2020-05-24
 
 <p>You have done most of this! Congrats :)</p>
 
-<p><strong>CS106B:</strong></p>
-<p>Stanford’s sequel class to CS 106A. In CS 106B, you further develop your toolkit by deepening your understanding of how a computer represents data and learning about additional problem-solving techniques and structures. The class is taught in C++, one of the most popular programming languages in history.</p>
+<p><strong>CS106B:</strong></p>
+
+<p>Stanford’s sequel class to CS 106A. In CS 106B, you further develop your toolkit by deepening your understanding of how a computer represents data and learning about additional problem-solving techniques and structures. The class is taught in C++, one of the most popular programming languages in history.</p>
+
 <p><em>Course website</em>: <a href="http://web.stanford.edu/class/cs106b/" target="_blank" rel="noreferrer noopener">http://web.stanford.edu/class/cs106b/</a></p>
 
 <p><em>Old recorded lectures</em>: <a rel="noreferrer noopener" href="https://see.stanford.edu/Course" target="_blank">https://see.stanford.edu/Course</a></p>
@@ -53,7 +59,8 @@ date: 2020-05-24
 
 <ul><li>Machine learning (<a rel="noreferrer noopener" href="http://cs231n.stanford.edu/" target="_blank">CS231N</a>, <a rel="noreferrer noopener" href="https://www.coursera.org/learn/machine-learning" target="_blank">CS229</a>)</li><li>Natural language processing (<a rel="noreferrer noopener" href="http://web.stanford.edu/class/cs124/" target="_blank">CS124</a>, <a rel="noreferrer noopener" href="http://web.stanford.edu/class/cs224n/" target="_blank">CS224N</a>)</li><li>Computer vision (<a rel="noreferrer noopener" href="http://cs231n.stanford.edu/" target="_blank">CS231N</a>)</li><li>Reinforcement learning (<a rel="noreferrer noopener" href="http://web.stanford.edu/class/cs234/index.html" target="_blank">CS234</a>)</li></ul>
 
-<h3>Systems</h3>
+<h3>Systems</h3>
+
 <p><strong>Core</strong>:</p>
 
 <ul><li>Computer Architecture and Systems (CS107 <a href="http://web.stanford.edu/class/cs107/" target="_blank" rel="noreferrer noopener">website</a> and <a href="https://see.stanford.edu/Course" target="_blank" rel="noreferrer noopener">videos</a>)</li><li>Principles of Systems (<a href="http://web.stanford.edu/class/cs110/" target="_blank" rel="noreferrer noopener">CS110</a>)</li></ul>
@@ -68,10 +75,12 @@ date: 2020-05-24
 
 <ul><li>2D/3D Graphics, rendering, animation, geometry (<a href="http://cs248.stanford.edu/winter20/" target="_blank" rel="noreferrer noopener">CS248</a>)</li><li>Virtual Reality (<a href="https://stanford.edu/class/ee267/" target="_blank" rel="noreferrer noopener">EE267</a>)</li><li>Animation and Simulation (<a href="http://graphics.stanford.edu/courses/cs348c/" target="_blank" rel="noreferrer noopener">CS348C</a>)</li><li>Introduction to Game Design and Development (<a href="https://stanfordgamedev.weebly.com/" target="_blank" rel="noreferrer noopener">CS146</a>)</li></ul>
 
-<h3>Web dev (frontend/backend)</h3>
+<h3>Web dev (frontend/backend)</h3>
+
 <p>Web development is how we make websites and online applications to do useful things. It consists of two major areas.</p>
 
-<p><strong>Frontend</strong>: This deals with everything related to what a website user can see and interact with such as the design, style, menus, text, images, etc.</p>
+<p><strong>Frontend</strong>: This deals with everything related to what a website user can see and interact with such as the design, style, menus, text, images, etc.</p>
+
 <p><strong>Backend</strong>: This deals with everything that has to do with all the logic and internal working of a website that is not typically visible to a user. This is stuff like storing data in databases, making a server, authentication, creating users, generating dynamic pages, etc.</p>
 
 <p>These resources will generally cover both frontend (HTML, CSS, javascript) andbackend programming:</p>
