@@ -4,7 +4,6 @@ title: "'It is an amazing time to be studying Computer Science - it's kinda like
 date: 2020-05-27
 ---
 
-
 <p>The post title is a quote by Chris Piech - a Stanford professor. It was something said by him in an introductory Zoom meeting for the section leaders of Stanford's CS106A - Code in Place online course. I was very lucky to be one of those:</p>
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6653334788939796480" allowfullscreen="" title="Embedded post" width="504" height="426" frameborder="0"></iframe>
