@@ -2,6 +2,7 @@
 layout: post
 title: "Java-like Object.equals() behavior in ABAP"
 date: 2020-05-15
+excerpt: Java’s equals() can be very useful - using it allows us to compare objects by their attributes. This is opposed to the traditional comparison with ‘==’ that compares whether two object references point to the same memory address.
 ---
 
 Java’s equals() can be very useful: using it allows us to compare objects by their attributes. This is opposed to the traditional comparison with ‘==’ that compares whether two object references point to the same memory address.
@@ -120,7 +121,7 @@ Car 1 and Car 3 are the same:   X
 Car 1 is the same as Car 4:     
 Car 1 is the same as Car 5:     X
 Car 1 is the same as itself:    X
-Car 1 and Truck 1 are the same: 
+Car 1 and Truck 1 are the same:
 ```
 
 <h2>Closing notes</h2>
@@ -227,4 +228,3 @@ START-OF-SELECTION.
 
   cl_demo_output=>display(  ).
 ```
-

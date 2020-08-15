@@ -2,6 +2,7 @@
 layout: post
 title: "My Review of Princeton’s Algorithms"
 date: 2020-05-24
+excerpt: Yesterday, I finished Princeton’s course on Algorithms. The course can be found on Coursera, and it is an online version of the university’s on-campus introduction to algorithms and data structures. It is actually split in 2 parts on Coursera (<a href="https://www.coursera.org/learn/algorithms-part1/">Algorithms, Part I</a> and <a href="https://www.coursera.org/learn/algorithms-part2/">Algorithms, Part II</a>) that together form the equivalent of the on-campus course.
 ---
 
 <p>Yesterday, I finished Princeton’s course on Algorithms. The course can be found on Coursera, and it is an online version of the university’s on-campus introduction to algorithms and data structures. It is actually split in 2 parts on Coursera (<a href="https://www.coursera.org/learn/algorithms-part1/">Algorithms, Part I</a> and <a href="https://www.coursera.org/learn/algorithms-part2/">Algorithms, Part II</a>) that together form the equivalent of the on-campus course.</p>

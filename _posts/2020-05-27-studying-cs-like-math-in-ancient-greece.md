@@ -2,6 +2,7 @@
 layout: post
 title: "'It is an amazing time to be studying Computer Science - it's kinda like studying Maths in Ancient Greece'"
 date: 2020-05-27
+excerpt: The post title is a quote by Chris Piech - a Stanford professor. It was something said by him in an introductory Zoom meeting for the section leaders of Stanford's CS106A - Code in Place online course. I was very lucky to be one of those. So, what Chris meant was that, for example, Pythagoras created something that serves as a basis to build upon centuries later and students are still learning it today. This is the current state of Computer Science - people will be learning about the magnificent discoveries of today for a long time to come!
 ---
 
 <p>The post title is a quote by Chris Piech - a Stanford professor. It was something said by him in an introductory Zoom meeting for the section leaders of Stanford's CS106A - Code in Place online course. I was very lucky to be one of those:</p>

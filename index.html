@@ -1,7 +1,31 @@
 ---
 layout: default
-title: Stoyko Stoev's Pages
+title: Home
 ---
-<div class="blurb">
-	<h1>Hi there, I'm Stoyko Stoev!</h1>
-</div><!-- /.blurb -->
+
+<h1>Hey!</h1>
+
+<p>I'm Stoyko Stoev, an ABAP developer at Schwarz IT Bulgaria.</p>
+
+<p>Starting with a Business Bachelor at the University of Groningen, I transitioned to computer science
+  starting with my Masters in Business Information Management at RSM, Erasmus University, and
+  continuing with online courses from Harvard (Intro to CS), Princeton (Algorithms), Stanford (Databases) and others.</p>
+
+<p>Learn more about my job or university education in my CV page, or about the online CS courses I've taken in
+  their respective page. And/or may be read my blog! Here's a snapshot of it, with my last post:</p>
+
+<div class="posts">
+  <article class="post">
+    <h1><a href="{{ site.baseurl }}{{ site.posts[0].url }}">{{ site.posts[0].title }}</a></h1>
+
+    <div class="date">
+      Written on {{ site.posts[0].date | date: "%B %e, %Y" }}
+    </div>
+
+    <div class="entry">
+      <p>{{ site.posts[0].excerpt }}</p>
+    </div>
+
+    <a href="{{ site.baseurl }}{{ site.posts[0].url }}" class="read-more">Read More</a>
+  </article>
+</div>
