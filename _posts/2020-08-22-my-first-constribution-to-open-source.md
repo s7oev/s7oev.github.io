@@ -2,7 +2,7 @@
 layout: post
 title: "My first contribution to an open-source project - PyOData"
 date: 2020-08-22
-excerpt: todo
+excerpt: "Hi @s7oev , than you for taking the time to report this issue. It's not supported yet but feel free to add it."
 ---
 
 A project I'm working on at my job requires the Python use of services created in ABAP and exposed as RESTful APIs using OData. The current best way of achieving this is through the developed by SAP Python framework [PyOData](https://github.com/SAP/python-pyodata), also available on GitHub as an open-source project.
