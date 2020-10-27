@@ -252,9 +252,9 @@ ENDMETHOD.
 ```
 
 Running with F9 prints the following output:
-![Beginning of the output in the ABAP console](https://blogs.sap.com/wp-content/uploads/2020/10/top_output.png)
-
-![End of the output in the ABAP console](https://blogs.sap.com/wp-content/uploads/2020/10/bottom_output.png)
+![Beginning of the output in the ABAP console](/img/2020/10/top_output.png "Beginning of the output in the ABAP console")
+[...]
+![End of the output in the ABAP console](/img/2020/10/bottom_output.png "End of the output in the ABAP console")
 
 # Conclusion
 This ends the tutorial of how to consume REST APIs in Cloud ABAP. I hope it has been useful for you. If you feel there’s any points of improvements, or you have any questions or feedback for me, let me know in the comments!
