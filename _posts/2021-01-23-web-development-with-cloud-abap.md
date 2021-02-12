@@ -2,7 +2,7 @@
 layout: post
 title: "
 Web Development with (Cloud) ABAP"
-date: 2021-01-03
+date: 2021-01-23
 excerpt: "Using Cloud ABAP, we will create an HTTP service, and use it to serve dynamically, server-side rendered HTML. I.e., we will be doing web development in ABAP. Our use of ABAP will be quite similar to, for example, using Flask in Python. Of course, however, we don’t actually have a framework to use, so we will have to do some things – like the template rendering – ourselves. This tutorial includes every step of the process, from creating the HTTP service, to using the web app. To do this, I will use the demo use-case of a movie database."
 ---
 
