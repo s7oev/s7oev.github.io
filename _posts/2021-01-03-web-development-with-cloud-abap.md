@@ -30,14 +30,14 @@ Our newly generated Handler Class implements the <em>if_http_service_extension</
 
 To get the path the user is requesting, we do the following:
 ```
-DATA(path) = request-&gt;get_header_field( '~path_info' ).
+DATA(path) = request->get_header_field( '~path_info' ).
 ```
 &nbsp;
 
 So, for example, if the user is on
 https://&lt;id&gt;.abap-web.eu10.hana.ondemand.com/sap/bc/http/sap/zss_awd_demo/browse, the method call will return the string “/browse”. We will be using this akin to Flask’s routes, if you are familiar with Flask (if not, doesn’t matter, it’s not important at all). Then, we format the path:
 ```
-path = zcl_ss_awd_helper=&gt;format_path( path ).
+path = zcl_ss_awd_helper=>format_path( path ).
 ```
 &nbsp;
 
@@ -45,7 +45,7 @@ I will not be showing the format_path method in this section (it is available in
 
 The next step is to dynamically call a method with this name:
 ```
-CALL METHOD me-&gt;(path).
+CALL METHOD me->(path).
 ```
 &nbsp;
 
@@ -60,15 +60,15 @@ But, again, if you don’t know Python and/or Flask, this is not important at al
 
 Then, what we would like to do is to be able to use the request and response objects inside the methods for the different paths. We obviously need this, to be able to return something to the user, and to also know what exactly they are requesting. To do this, we will simply make the request and response instance attributes:
 ```
-    me-&gt;request = request.
-    me-&gt;response = response.
+    me->request = request.
+    me->response = response.
 ```
 &nbsp;
 
 Now, for the impatient, let’s immediately see the fruits of our labor. With only this, we can simply add a method <em>hello_world</em> (without any parameters), and add the following code inside:
 ```
   METHOD hello_world.
-    response-&gt;set_text( 'Hello, world!' ).
+    response->set_text( 'Hello, world!' ).
   ENDMETHOD.
 ```
 The method <em>set_text</em> of the response object <em>“sets the HTTP body of this entity to the given string data”</em>.
@@ -96,18 +96,18 @@ ENDCLASS.
 
 CLASS zcl_ss_awd_demo IMPLEMENTATION.
   METHOD if_http_service_extension~handle_request.
-    me-&gt;request = request.
-    me-&gt;response = response.
+    me->request = request.
+    me->response = response.
 
-    DATA(path) = request-&gt;get_header_field( '~path_info' ).
-    path = zcl_ss_awd_helper=&gt;format_path( path ).
+    DATA(path) = request->get_header_field( '~path_info' ).
+    path = zcl_ss_awd_helper=>format_path( path ).
 
-    CALL METHOD me-&gt;(path).
+    CALL METHOD me->(path).
   ENDMETHOD.
 
 
   METHOD hello_world.
-    response-&gt;set_text( 'Hello, world!' ).
+    response->set_text( 'Hello, world!' ).
   ENDMETHOD.
 ENDCLASS.
 ```
@@ -116,9 +116,9 @@ ENDCLASS.
 To help you get acquainted also with the request object, let’s add some dynamicity to our application. Let’s, instead of saying <em>Hello, world!</em>, say <em>Hello, &lt;name&gt;!</em>, where &lt;<em>name&gt;</em> will be a URL query parameter. The way to get a query parameter is to use the method <em>get_form_field</em> of the request object. We modify our <em>hello_world</em> method as follows:
 ```
   METHOD hello_world.
-    DATA(name) = request-&gt;get_form_field( 'name' ).
-    response-&gt;set_text( |Hello, { name }!| ).
-  ENDMETHOD.</code></pre>
+    DATA(name) = request->get_form_field( 'name' ).
+    response->set_text( |Hello, { name }!| ).
+  ENDMETHOD.
 ```
 
 Now, if we request the URL https://&lt;our HTTP Service URL&gt;/hello_world?name=&lt;some name&gt; we will see a dynamic greeting! Here’s the demo:
@@ -129,19 +129,19 @@ Now, if we request the URL https://&lt;our HTTP Service URL&gt;/hello_world?name
 Anyway, back to our <em>handle_request</em> method. We are almost done, but let’s add some edge-case considerations. One, if the path is empty, serve the homepage, and two – if there is no such method in the class, serve a 404 page.
 ```
   METHOD if_http_service_extension~handle_request.
-    me-&gt;request = request.
-    me-&gt;response = response.
+    me->request = request.
+    me->response = response.
 
-    DATA(path) = request-&gt;get_header_field( '~path_info' ).
+    DATA(path) = request->get_header_field( '~path_info' ).
 
     IF strlen( path ) EQ 0.
       home(  ).
       RETURN.
     ENDIF.
 
-    path = zcl_ss_awd_helper=&gt;format_path( path ).
+    path = zcl_ss_awd_helper=>format_path( path ).
     TRY.
-        CALL METHOD me-&gt;(path).
+        CALL METHOD me->(path).
       CATCH cx_sy_dyn_call_illegal_method.
         not_found_404(  ).
     ENDTRY.
@@ -152,7 +152,7 @@ Anyway, back to our <em>handle_request</em> method. We are almost done, but let�
 With this, we conclude the method! These less than 15 lines of code (without the white-space) are all it takes to create a basic web app in ABAP – impressive! But how do we serve HTML? Very simple! We just pass HTML as the string parameter for <em>set_text</em> of the response object, like this for example:
 ```
   METHOD home.
-    response-&gt;set_text( |&lt;html&gt; &lt;head&gt; &lt;title&gt; Home &lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt;Home page&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;| ).
+    response->set_text( |<html> <head> <title> Home </title> </head> <body> <p>Home page</p> </body> </html>| ).
   ENDMETHOD.
 ```
 &nbsp;
@@ -160,7 +160,7 @@ With this, we conclude the method! These less than 15 lines of code (without the
 We do something similar with our 404 method:
 ```
   METHOD not_found_404.
-    response-&gt;set_text( |&lt;html&gt; &lt;head&gt; &lt;title&gt; 404 &lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;p&gt;404: no such page exists&lt;/p&gt; &lt;/body&gt; &lt;/html&gt;| ).
+    response->set_text( |<html> <head> <title> 404 </title> </head> <body> <p>404: no such page exists</p> </body> </html>| ).
   ENDMETHOD.
 ```
 And we have our working web app!
@@ -187,12 +187,12 @@ To get the relevant HTML, I added a method to my helper class that fetches it fr
 
 So, I created the HTML files <em>index.html</em>, <em>browse.html</em>, <em>add.html</em>, <em>404.html</em> that are all using <a href="https://www.w3schools.com/howto/tryhow_make_a_website.htm">this W3 Schools template</a>. The only interesting thing happening inside is that I use variables that would later be replaced with the dynamically rendered content. Once again, similar to Flask (through the jinja rendering) – and once again, totally cool if you are unfamiliar with Flask. To identify the variables, I prefix them with <em>$</em>. Here’s one example:
 ```
-&lt;div class="row"&gt;
-  &lt;div class="main"&gt;
-    &lt;h2&gt;Here is our movie catalog:&lt;/h2&gt;
+<div class="row">
+  <div class="main">
+    <h2>Here is our movie catalog:</h2>
     $movies
-  &lt;/div&gt;
-&lt;/div&gt;
+  </div>
+</div>
 ```
 Here, $movies would be replaced with a list of all the movies in the database.
 
@@ -218,7 +218,7 @@ CLASS zcl_ss_awd_movies DEFINITION PUBLIC FINAL CREATE PUBLIC.
         RETURNING VALUE(result) TYPE movies_tt,
 
       itab_to_html_tab
-        IMPORTING movies        TYPE zcl_ss_awd_movies=&gt;movies_tt
+        IMPORTING movies        TYPE zcl_ss_awd_movies=>movies_tt
         RETURNING VALUE(result) TYPE string.
 ENDCLASS.
 
@@ -242,13 +242,13 @@ CLASS zcl_ss_awd_movies IMPLEMENTATION.
 
 
   METHOD itab_to_html_tab.
-    result = |&lt;ul&gt;|.
+    result = |<ul>|.
 
     LOOP AT movies REFERENCE INTO DATA(movie).
-      result &amp;&amp;= |&lt;li&gt;{ movie-&gt;name } ({ movie-&gt;year_ })&lt;/li&gt;|.
+      result &&= |<li>{ movie->name } ({ movie->year_ })</li>|.
     ENDLOOP.
 
-    result &amp;&amp;= |&lt;/ul&gt;|.
+    result &&= |</ul>|.
   ENDMETHOD.
 ENDCLASS.
 ```
@@ -257,64 +257,64 @@ ENDCLASS.
 Now, let’s start to implement some web app-related logic in our handler class! First, let’s get the relevant HTMLs:
 ```
   METHOD home.
-    response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'index' ) ).
+    response->set_text( zcl_ss_awd_helper=>get_page_html( 'index' ) ).
   ENDMETHOD.
 
 
   METHOD browse.
-    response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'browse' ) ).
+    response->set_text( zcl_ss_awd_helper=>get_page_html( 'browse' ) ).
   ENDMETHOD.
 
 
   METHOD add.
-    response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'add' ) ).
+    response->set_text( zcl_ss_awd_helper=>get_page_html( 'add' ) ).
   ENDMETHOD.
 
 
   METHOD not_found_404.
-    response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( '404' ) ).
+    response->set_text( zcl_ss_awd_helper=>get_page_html( '404' ) ).
   ENDMETHOD.
 ```
 &nbsp;
 
 With this, we have a static, but at least good looking web app! Here’s what everything up till now looks like:
 
-[embed]https://youtu.be/DyM1XxCCcIA[/embed]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DyM1XxCCcIA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Towards the end of the video, we see the “/add” route, which looks as follows in HTML code:
 ```
-&lt;div class="row"&gt;
-  &lt;div class="main"&gt;
-    &lt;h2&gt;Extend our movie catalog:&lt;/h2&gt;
-    &lt;form action="/sap/bc/http/sap/zss_awd_demo/add" method="get"&gt;
-	  &lt;input type="hidden" id="action" name="execute" value="X"&gt;
-      &lt;label for="name"&gt;Movie name:&lt;/label&gt;&lt;br&gt;
-      &lt;input type="text" id="name" name="name"&gt;&lt;br&gt;&lt;br&gt;
-      &lt;label for="year"&gt;Movie year:&lt;/label&gt;&lt;br&gt;
-      &lt;input type="text" id="year" name="year"&gt;&lt;br&gt;&lt;br&gt;
-	  &lt;input type="submit" value="Create"&gt;
-	&lt;/form&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<div class="row">
+  <div class="main">
+    <h2>Extend our movie catalog:</h2>
+    <form action="/sap/bc/http/sap/zss_awd_demo/add" method="get">
+	  <input type="hidden" id="action" name="execute" value="X">
+      <label for="name">Movie name:</label><br>
+      <input type="text" id="name" name="name"><br><br>
+      <label for="year">Movie year:</label><br>
+      <input type="text" id="year" name="year"><br><br>
+	  <input type="submit" value="Create">
+	</form>
+  </div>
+</div>
 ```
 Now, we will implement our first logic handling in a route! We add a new HTML template, <em>executed_add.html</em> which will show up in the “/add” route after the form is submitted. Here’s what the server-side logic looks like:
 ```
   METHOD add.
-    IF request-&gt;get_form_field( 'execute' ) = abap_true.
-      response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'executed_add' ) ).
+    IF request->get_form_field( 'execute' ) = abap_true.
+      response->set_text( zcl_ss_awd_helper=>get_page_html( 'executed_add' ) ).
     ELSE.
-      response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'add' ) ).
+      response->set_text( zcl_ss_awd_helper=>get_page_html( 'add' ) ).
     ENDIF.
   ENDMETHOD.
 ```
 This works because of the hidden input called <em>execute</em> which has as value ‘X’ ( = abap_true). The <em>executed_add.html </em>template has two variables – response_title and response_body:
 ```
-&lt;div class="row"&gt;
-  &lt;div class="main"&gt;
-    &lt;h2&gt;$response_title&lt;/h2&gt;
+<div class="row">
+  <div class="main">
+    <h2>$response_title</h2>
     $response_body
-  &lt;/div&gt;
-&lt;/div&gt;
+  </div>
+</div>
 ```
 And from now on, when we press the <em>Create </em>button, we are still in the “/add” route, but, under the hood, we get served the <em>executed_add.html</em> template:
 <p style="overflow: hidden;margin-bottom: 0px"><img class="aligncenter" src="https://blogs.sap.com/wp-content/uploads/2021/01/awd6.png" alt="executed_add.html" /></p>
@@ -342,23 +342,23 @@ And the following implementation:
     result = html.
 
     LOOP AT var_and_content_tab REFERENCE INTO DATA(var_and_content).
-      result = replace( val = result sub = |${ var_and_content-&gt;variable }| with = var_and_content-&gt;content ).
+      result = replace( val = result sub = |${ var_and_content->variable }| with = var_and_content->content ).
     ENDLOOP.
   ENDMETHOD.
 ```
 Let’s test it in our “/add” route:
 ```
   METHOD add.
-    IF request-&gt;get_form_field( 'execute' ) = abap_true.
-      DATA(html) = zcl_ss_awd_helper=&gt;get_page_html( 'executed_add' ).
+    IF request->get_form_field( 'execute' ) = abap_true.
+      DATA(html) = zcl_ss_awd_helper=>get_page_html( 'executed_add' ).
 
-      html = zcl_ss_awd_helper=&gt;render_html( html = html var_and_content_tab = VALUE #(
+      html = zcl_ss_awd_helper=>render_html( html = html var_and_content_tab = VALUE #(
         ( variable = 'response_title' content = 'Testing rendering... (response_title)' )
         ( variable = 'response_body' content = 'Testing rendering... (response_content)' )  ) ).
 
-      response-&gt;set_text( html ).
+      response->set_text( html ).
     ELSE.
-      response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'add' ) ).
+      response->set_text( zcl_ss_awd_helper=>get_page_html( 'add' ) ).
     ENDIF.
   ENDMETHOD.
 ```
@@ -368,28 +368,28 @@ This time, after pressing the create button, we see the rendered HTML!
 Of course, at this point, we are not really creating anything. But we are almost there! We already have the class (<em>Movies</em>) to handle this, with its <em>create </em>method. All we have to do is just call it, evaluate the subrc it returned, and set the response based on this! There’s two options: first, all’s good – the movie was created (subrc 0) and second, the movie already exists (subrc 4). Here’s what we do:
 ```
   METHOD add.
-    IF request-&gt;get_form_field( 'execute' ) = abap_true.
+    IF request->get_form_field( 'execute' ) = abap_true.
       " add the movie
-      DATA(subrc) = zcl_ss_awd_movies=&gt;create( name = request-&gt;get_form_field( 'name' )
-        year = CONV #( request-&gt;get_form_field( 'year' ) ) ).
+      DATA(subrc) = zcl_ss_awd_movies=>create( name = request->get_form_field( 'name' )
+        year = CONV #( request->get_form_field( 'year' ) ) ).
 
       " prepare response based on subrc
-      DATA(response_title) = SWITCH #( subrc WHEN 0 THEN |Successfully added movie { request-&gt;get_form_field( 'name' ) }|
+      DATA(response_title) = SWITCH #( subrc WHEN 0 THEN |Successfully added movie { request->get_form_field( 'name' ) }|
         ELSE |Sorry, we could not add the movie...| ).
 
       DATA(response_content) = SWITCH #( subrc WHEN 0 THEN |Thank you for extending our movie database!|
         ELSE |...because we already have it in our database!| ).
 
       " return the dynamically rendered HTML response
-      DATA(html) = zcl_ss_awd_helper=&gt;get_page_html( 'executed_add' ).
+      DATA(html) = zcl_ss_awd_helper=>get_page_html( 'executed_add' ).
 
-      html = zcl_ss_awd_helper=&gt;render_html( html = html var_and_content_tab = VALUE #(
+      html = zcl_ss_awd_helper=>render_html( html = html var_and_content_tab = VALUE #(
         ( variable = 'response_title' content = response_title )
         ( variable = 'response_body'  content = response_content ) ) ).
 
-      response-&gt;set_text( html ).
+      response->set_text( html ).
     ELSE.
-      response-&gt;set_text( zcl_ss_awd_helper=&gt;get_page_html( 'add' ) ).
+      response->set_text( zcl_ss_awd_helper=>get_page_html( 'add' ) ).
     ENDIF.
   ENDMETHOD.
 ```
@@ -408,13 +408,13 @@ It definitely seems so! In fact, if we now try to add Titanic again we will not 
 This means we are almost finished with our application! Let’s just add the functionality to list the movies in the “/browse” route:
 ```
   METHOD browse.
-    DATA(movies) = zcl_ss_awd_movies=&gt;read_all(  ).
+    DATA(movies) = zcl_ss_awd_movies=>read_all(  ).
 
-    DATA(html) = zcl_ss_awd_helper=&gt;render_html(
-     html = zcl_ss_awd_helper=&gt;get_page_html( 'browse' ) var_and_content_tab = VALUE #(
-     ( variable = 'movies' content = zcl_ss_awd_movies=&gt;itab_to_html_tab( movies ) ) ) ).
+    DATA(html) = zcl_ss_awd_helper=>render_html(
+     html = zcl_ss_awd_helper=>get_page_html( 'browse' ) var_and_content_tab = VALUE #(
+     ( variable = 'movies' content = zcl_ss_awd_movies=>itab_to_html_tab( movies ) ) ) ).
 
-    response-&gt;set_text( html ).
+    response->set_text( html ).
   ENDMETHOD.
 ```
 Which results in the following:
@@ -422,7 +422,7 @@ Which results in the following:
 <p class="image_caption" style="text-align:center;font-style:italic;, Arial, sans-serif">Our movie catalog</p>
 To reward ourselves for making it till here, here’s a video of this, albeit simple, fully fledged web app:
 
-[embed]https://youtu.be/bflMbQ1z7aI[/embed]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DyM1XxCCcIA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h1>Limitations</h1>
 One important limitation I found, and is not discussed above, is that if the HTML form is sending the data with a POST method, we get a 403 error (forbidden). This is why I went with the implementation using a GET to the same route, and an <em>execute </em>query parameter. I haven’t really investigated much why this happens. A prima vista, I think this is probably caused by the lack of CSRF token, which is required for executing modifying HTTP verbs (such as POST or DELETE). It might be possible to overcome this with a JavaScript modifying the sent request. It might also not be. The issue itself might have a completely different cause, instead of a CSRF token.
 <h1>Conclusion</h1>
